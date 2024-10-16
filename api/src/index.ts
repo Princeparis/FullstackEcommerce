@@ -7,6 +7,8 @@ app.get('/', (req, res) => {
     res.send('Hello World')
 })
 
+const tester = "New"
+
 app.listen(PORT, () => {
     console.log(`App is listening at ${PORT}`)
 })
