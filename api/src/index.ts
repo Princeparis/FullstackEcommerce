@@ -1,4 +1,5 @@
 import express from 'express'
+import productRouter from './routes/products'
 
 const PORT = 8080
 const app = express()
@@ -6,6 +7,8 @@ const app = express()
 app.get('/', (req, res) => {
     res.send('Hello World')
 })
+
+app.use('/products', productRouter)
 
 const tester = "New"
 
