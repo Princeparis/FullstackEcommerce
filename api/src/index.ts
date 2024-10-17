@@ -7,13 +7,8 @@ const app = express()
 app.use(urlencoded({extended: false}))
 app.use(json())
 
-app.get('/', (req, res) => {
-    res.send('Hello World')
-})
-
 app.use('/products', productRouter)
 
-const tester = "New"
 
 app.listen(PORT, () => {
     console.log(`App is listening at ${PORT}`)
