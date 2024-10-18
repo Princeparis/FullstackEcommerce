@@ -1,15 +1,18 @@
-import express, {json, urlencoded} from 'express'
-import productRouter from './routes/products'
+import express, { NextFunction, Request, Response } from "express";
+import productRoutes from "./routes/products";
 
-const PORT = 8080
-const app = express()
+const app = express();
 
-app.use(urlencoded({extended: false}))
-app.use(json())
+app.use(express.json());
+app.use("/products", productRoutes);
 
-app.use('/products', productRouter)
+// Error handling middleware
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
+});
 
-
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-    console.log(`App is listening at ${PORT}`)
-})
+  console.log(`Server is running on port ${PORT}`);
+});
